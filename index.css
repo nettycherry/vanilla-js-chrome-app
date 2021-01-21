@@ -1,6 +1,6 @@
 body {
-  color: rgb(5, 10, 10);
-  background-color: bisque;
+  color: rgb(106, 238, 238);
+  background-color: rgb(255, 254, 253);
 }
 
 .form,
@@ -29,5 +29,5 @@ body {
   height: 100%;
   z-index: -1;
   /*사진이 텍스트 밑에 깔리게*/
-  animation: fadeIn 3s linear;
+  animation: fadeIn 1s linear;
 }
