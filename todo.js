@@ -63,11 +63,16 @@ function handleSubmit(event){
 function loadToDos(){
     const loadedToDos=localStorage.getItem(TODOS_LS);
     if(toDos!==null){
-        console.log(loadedToDos);
         const parsedToDos = JSON.parse(loadedToDos);
         //string으로 저장된 것을 object로 바꿔줌
-        console.log(parsedToDos);
-
+        parsedToDos.forEach(function(toDo){
+            paintToDo(toDo.text);
+        }); 
+        /*array function의 하나인 forEach는 투두리스트 각각의 text를 불러옴
+        function(toDo)에서 toDo는 potato, whatever 바꿔도 결과 똑같음
+        (forEach가 불러오는 current element를 toDo가 대표?)
+        console.log(toDo.text)하면 새로고침 시 투두리스트 초기화되지만,
+        paintToDo는 새로고침해도 투두리스트 초기화 X, 화면에 표시*/
     } 
 }
 
