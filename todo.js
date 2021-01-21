@@ -4,8 +4,9 @@ const toDoForm=document.querySelector(".js-toDoForm"),
 
 const TODOS_LS="toDos";
 
-const toDos = []; 
+let toDos = []; 
 //비어 있는 목록, to do 저장할 때마다 이 array에 저장되도록
+
 
 function deleteToDo(event){
     //투두리스트에서 어떤 li의 button이 삭제 클릭되었는지 알아야 함
@@ -13,6 +14,16 @@ function deleteToDo(event){
     const li = btn.parentNode;
     //parentNode는 console.dir(event.target)으로 li의 부모 element 찾아준 것
     toDoList.removeChild(li)
+    const cleanToDos = toDos.filter(function(toDo){
+        return toDo.id !== parseInt(li.id);
+        /*parseInt는 string인 li.id를 숫자로 바꿔줌. 
+        toDo.id가 숫자이기 때문에 안 바꿔주면 오류남.*/
+    });
+    /*filter 함수는 array 내 모든 item 각각에 실행되고,
+    true인 item만, 체크된 item만 가지고 새로운 array를 만듦*/
+    toDos=cleanToDos; //toDos를 cleanToDos로 교체
+    saveToDo()
+
 }
 
 function saveToDo(){
