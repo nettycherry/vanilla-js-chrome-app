@@ -71,7 +71,8 @@ function handleSubmit(event){
     const currentValue=toDoInput.value;
     paintToDo(currentValue);
     toDoInput.value="";
-    //input에 값 넣고 엔터 누르면 to do 생성 및 삭제 가능
+    /*input에 값 넣고 엔터 누르면 to do 생성 및 삭제 가능
+    ""는 remove the text from the input*/
 }
 
 function loadToDos(){
