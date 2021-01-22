@@ -18,9 +18,10 @@ function deleteToDo(event){
         return toDo.id !== parseInt(li.id);
         /*parseInt는 string인 li.id를 숫자로 바꿔줌. 
         toDo.id가 숫자이기 때문에 안 바꿔주면 오류남.*/
+        //삭제된 li의 id가 아닌 것들만(삭제되지 않은 것들만) 필터링 해라//
     });
     /*filter 함수는 array 내 모든 item 각각에 실행되고,
-    true인 item만, 체크된 item만 가지고 새로운 array를 만듦*/
+    true인 item만, 체크된 item만 가지고 새로운 array를 만듦.*/
     toDos=cleanToDos; //toDos를 cleanToDos로 교체
     saveToDo()
 
@@ -42,7 +43,9 @@ function paintToDo(text){
     
     const span=document.createElement("span");
     span.innerText=text;
-    //submit function에서 온 텍스트값
+    /*submit function에서 온 텍스트값
+    paintToDo(text)의 text*/
+
     
     const newId = toDos.length +1;
     //원래 배열은 0부터 시작이지만, id는 1부터 시작할 수 있게
@@ -61,8 +64,10 @@ function paintToDo(text){
     };
     
     toDos.push(toDoObj); 
-    //toDos array에 toDoObj 넣어줌
-    saveToDo(); //push 다음에 호출해야 함
+    /*toDos array에 toDoObj 넣어줌
+    toDoObj를 따로 선언하고 push하는 이유는 lS에 값을 toDoObj에서 정한 형식대로 저장해서 새로고침해도 값이 남아있도록*/
+
+    saveToDo(toDoObj); //push 다음에 호출해야 함
 }
 
 function handleSubmit(event){
@@ -83,7 +88,7 @@ function loadToDos(){
         parsedToDos.forEach(function(toDo){
             paintToDo(toDo.text);
         }); 
-        /*array function의 하나인 forEach는 투두리스트 각각의 text를 불러옴
+        /*array function의 하나인 forEach는 parsed 투두리스트 각각의 text를 불러옴
         function(toDo)에서 toDo는 potato, whatever 바꿔도 결과 똑같음
         (forEach가 불러오는 current element를 toDo가 대표?)
         console.log(toDo.text)하면 새로고침 시 투두리스트 초기화되지만,
